@@ -9,15 +9,35 @@ public class Rot13 {
 
     public static String transformToRot13(String value) {
         return value.chars()
-                .map((int character) -> {
-                    if ((character < MIN) || (character > MAX)) {
-                        return character;
+                .map((int currentCharValue) -> {
+                    if ((currentCharValue < MIN) || (currentCharValue > MAX)) {
+                        return currentCharValue;
                     }
 
-                    final int mappedChar = character - MIN;
-                    final int rest = ((mappedChar + SHIFT) % RANGE);
+                    final int mappedChar = currentCharValue - MIN;
+                    final int remaining = ((mappedChar + SHIFT) % RANGE);
 
-                    return MIN + rest;
+                    return MIN + remaining;
+                })
+                .mapToObj(character -> ((Character) (char) character).toString())
+                .collect(Collectors.joining());
+    }
+
+    public static String transformToRot13Bis(String value) {
+        return value.chars()
+                .map((int currentCharValue) -> {
+                    final char currentChar = (char) currentCharValue;
+                    if (currentChar >= 'a' && currentChar <= 'm') {
+                        return currentChar + 13;
+                    } else if (currentChar >= 'A' && currentChar <= 'M') {
+                        return currentChar + 13;
+                    } else if (currentChar >= 'n' && currentChar <= 'z') {
+                        return currentChar - 13;
+                    } else if (currentChar >= 'N' && currentChar <= 'Z') {
+                        return currentChar - 13;
+                    } else {
+                        return currentChar;
+                    }
                 })
                 .mapToObj(character -> ((Character) (char) character).toString())
                 .collect(Collectors.joining());
