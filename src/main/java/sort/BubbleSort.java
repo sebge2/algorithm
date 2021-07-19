@@ -3,7 +3,7 @@ package sort;
 // O(n²)
 public class BubbleSort {
 
-    public static int[] bubbleSort(int[] values){
+    public static int[] sort(int[] values){
         for (int i = 0; i < values.length; i++) {
             for(int j = i -1; j >= 0; j--){
                 if(values[j + 1] < values[j]){
