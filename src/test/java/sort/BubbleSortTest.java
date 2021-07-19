@@ -1,4 +1,7 @@
+package sort;
+
 import org.junit.jupiter.api.Test;
+import sort.BubbleSort;
 
 import static org.junit.jupiter.api.Assertions.*;
 

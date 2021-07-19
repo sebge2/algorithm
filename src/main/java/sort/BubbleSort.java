@@ -1,5 +1,6 @@
-import java.util.Arrays;
+package sort;
 
+// O(n²)
 public class BubbleSort {
 
     public static int[] bubbleSort(int[] values){
