@@ -1,3 +1,5 @@
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class SalutTotoBis {
 
     public static void saySalutToto(int numberTimes) {
@@ -17,8 +19,8 @@ public class SalutTotoBis {
 
         private final int numberTimes;
 
-        private int numberSalut = 0;
-        private int numberToto = 0;
+        private final AtomicInteger numberSalut = new AtomicInteger(0);
+        private final AtomicInteger numberToto = new AtomicInteger(0);
 
         private ThreadContext(int numberTimes) {
             this.numberTimes = numberTimes;
@@ -29,21 +31,19 @@ public class SalutTotoBis {
         }
 
         public int getNumberSalut() {
-            return numberSalut;
+            return numberSalut.get();
         }
 
         public int getNumberToto() {
-            return numberToto;
+            return numberToto.get();
         }
 
-        public ThreadContext incrementNumberSalut() {
-            this.numberSalut++;
-            return this;
+        public void incrementNumberSalut() {
+            this.numberSalut.incrementAndGet();
         }
 
-        public ThreadContext incrementNumberToto() {
-            this.numberToto++;
-            return this;
+        public void incrementNumberToto() {
+            this.numberToto.incrementAndGet();
         }
     }
 
