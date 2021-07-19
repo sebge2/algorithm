@@ -1,3 +1,5 @@
+package thread;
+
 public class SalutToto {
 
     public static void saySalutToto(int numberTimes) throws InterruptedException {

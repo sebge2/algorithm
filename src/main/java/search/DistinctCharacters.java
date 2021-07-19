@@ -1,3 +1,5 @@
+package search;
+
 public class DistinctCharacters {
 
     public static String findLongestDistinctSubstring(String value) {

@@ -1,3 +1,5 @@
+package thread;
+
 import org.junit.jupiter.api.Test;
 
 class SalutTotoTest {
