@@ -5,8 +5,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-import static java.util.Arrays.asList;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 public class TailTest {
 
@@ -14,14 +13,41 @@ public class TailTest {
     Path tempDir;
 
     @Test
-    public void tail3Lines() throws IOException {
+    public void tail2LinesEven() throws IOException {
         final Path tempFile = Files.createFile(tempDir.resolve("my-content.txt"));
-
         Files.writeString(tempFile, "first\nsecond\nfourth\nfifth");
 
-        assertEquals(
-                asList("fourth", "fifth"),
-                Tail.tail(tempFile.toFile(), 2)
+        final String[] actual = Tail.tail2(tempFile.toFile(), 2);
+
+        assertArrayEquals(
+                new String[]{"fourth", "fifth"},
+                actual
+        );
+    }
+
+    @Test
+    public void tail2LinesOdd() throws IOException {
+        final Path tempFile = Files.createFile(tempDir.resolve("my-content.txt"));
+        Files.writeString(tempFile, "first\nsecond\nfourth\nfifth\nsixth");
+
+        final String[] actual = Tail.tail2(tempFile.toFile(), 2);
+
+        assertArrayEquals(
+                new String[]{"fifth", "sixth"},
+                actual
+        );
+    }
+
+    @Test
+    public void tail2LinesLessAvailable() throws IOException {
+        final Path tempFile = Files.createFile(tempDir.resolve("my-content.txt"));
+        Files.writeString(tempFile, "first");
+
+        final String[] actual = Tail.tail2(tempFile.toFile(), 2);
+
+        assertArrayEquals(
+                new String[]{"first"},
+                actual
         );
     }
 }

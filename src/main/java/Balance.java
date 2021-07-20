@@ -1,5 +1,6 @@
 import java.util.stream.IntStream;
 
+// O(n²)
 public class Balance {
 
     public static int[][] balance(int[] number){
