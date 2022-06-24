@@ -5,11 +5,6 @@ import java.util.Set;
 
 public class HappyNumber {
 
-    public static void main(String[] args) {
-        System.out.println("is happy 19? " + isHappyNumber(19));
-        System.out.println("is happy 4? " + isHappyNumber(4));
-    }
-
     public static boolean isHappyNumber(int number) {
         final Set<Integer> alreadyComputed = new HashSet<>();
 
